@@ -21,7 +21,7 @@ add_filter("fch_captcha_append_widget", function ($html) {
 
 /** Validate captcha on form submission
  * @param  string $solution value of $_POST['frc-captcha-solution']
- * @param  bool $lax_on_failure how to decide on network failure: returning false here means a broken network failure is treated as a bot.
+ * @param  bool $lax_on_failure how to decide on network failure: returning false here means a broken network failure or integration in settings is deactivated is treated as a bot.
  * @return bool           true = human, false = bot / missing solution
  */
 add_filter(
@@ -29,12 +29,12 @@ add_filter(
     function ($solution, $lax_on_failure) {
         $plugin = FriendlyCaptcha_Plugin::$instance;
 
-        if (empty($solution)) {
-            return false;
-        }
-
         if (!$plugin->is_configured()) {
             return $lax_on_failure;
+        }
+
+        if (empty($solution)) {
+            return false;
         }
 
         $verification = frcaptcha_verify_captcha_solution(
