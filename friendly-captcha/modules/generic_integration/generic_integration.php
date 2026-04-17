@@ -7,7 +7,7 @@
  * @param  string $html  html to append the captcha widget to
  * @return string        html with captcha widget appended
  */
-add_filter("fch_captcha_append_widget", function ($html) {
+add_filter("frc_captcha_append_widget", function ($html) {
     $plugin = FriendlyCaptcha_Plugin::$instance;
     if (!$plugin->is_configured()) {
         return $html;
