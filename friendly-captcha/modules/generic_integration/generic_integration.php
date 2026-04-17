@@ -25,7 +25,7 @@ add_filter("fch_captcha_append_widget", function ($html) {
  * @return bool           true = human, false = bot / missing solution
  */
 add_filter(
-    "fch_captcha_validation",
+    "frc_captcha_validation",
     function ($solution, $lax_on_failure) {
         $plugin = FriendlyCaptcha_Plugin::$instance;
 
